@@ -23,3 +23,6 @@
 ....
 
 启动项目需启动consul,zipkin,tx-lcn-TM 并在.properties文件中进行相关配置
+
+新增微服务只需复制test项目,改名改配置改pom即可
+
