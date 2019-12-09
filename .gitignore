@@ -1,0 +1,4 @@
+# Project exclude paths
+/transfer-cloud-backend/target/
+/transfer-cloud-test/target/
+/transfer-hystrix-turbine-dashboard/target/

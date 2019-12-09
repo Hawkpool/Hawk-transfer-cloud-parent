@@ -1,0 +1,49 @@
+server:
+  port: 8030
+
+spring:
+  server:
+    port: 8030
+  application:
+    name: microservice-hystrix-turbine
+
+## 配置 consul
+cloud:
+  consul:
+    host: localhost
+    port: 8500
+    ribbon:
+      enabled: true #是否启用ribbon进行客户端负载均衡
+    discovery:
+      heartbeat: #配置是否进行health check，以及频率
+        enabled: true
+        ttlValue: 10
+      #是否将自身服务注册到consul中(健康检查)
+      register: true
+      healthCheckPath:  http://127.0.0.1:8030/actuator/health
+      healthCheckInterval: 15s
+
+management:
+    endpoints:
+  web:
+    exposure:
+      include: "*"
+      exclude: env
+endpoint:
+  health:
+    show-details: always
+
+turbine:
+  aggregator:
+    clusterConfig: default
+  # 集群名称，当我们服务数量非常多的时候，可以启动多个 Turbine服务来构建不同的聚合集群，
+  # 而该参数可以用来区分这些不同的聚合集群，同时该参数值可以在 Hystrix仪表盘中用来定位不同的聚合集群，
+  # 只需要在 Hystrix Stream 的 URL 中通过 cluster 参数来指定；
+  clusterNameExpression: new String("default")
+  # true 同一主机上的服务通过host和port的组合来进行区分，默认为true
+  # false 在本机测试时 监控中host集群数会为1了 因为本地host是一样的
+  combine-host: true
+  instanceUrlSuffix:
+    default: hystrix.stream
+  #需要监控的应用名称，默认逗号隔开
+  appConfig: microservice-transfer-backend,microservice-transfer-test,microservice-transfer-workflow,microservice-form-tool

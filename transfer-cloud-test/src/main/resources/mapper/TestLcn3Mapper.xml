@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.tuliu.land.transfer.tuliutransfercloudparent.mapper.TestLcn3Mapper" >
+  <resultMap id="BaseResultMap" type="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="a3" property="a3" jdbcType="VARCHAR" />
+    <result column="b3" property="b3" jdbcType="VARCHAR" />
+    <result column="c3" property="c3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, a3, b3, c3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from test_lcn_3
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_lcn_3
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from test_lcn_3
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3Criteria" >
+    delete from test_lcn_3
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3" >
+    insert into test_lcn_3 (id, a3, b3, c3
+      )
+    values (#{id,jdbcType=INTEGER}, #{a3,jdbcType=VARCHAR}, #{b3,jdbcType=VARCHAR}, #{c3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3" >
+    insert into test_lcn_3
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="a3 != null" >
+        a3,
+      </if>
+      <if test="b3 != null" >
+        b3,
+      </if>
+      <if test="c3 != null" >
+        c3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="a3 != null" >
+        #{a3,jdbcType=VARCHAR},
+      </if>
+      <if test="b3 != null" >
+        #{b3,jdbcType=VARCHAR},
+      </if>
+      <if test="c3 != null" >
+        #{c3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3Criteria" resultType="java.lang.Integer" >
+    select count(*) from test_lcn_3
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update test_lcn_3
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.a3 != null" >
+        a3 = #{record.a3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.b3 != null" >
+        b3 = #{record.b3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.c3 != null" >
+        c3 = #{record.c3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update test_lcn_3
+    set id = #{record.id,jdbcType=INTEGER},
+      a3 = #{record.a3,jdbcType=VARCHAR},
+      b3 = #{record.b3,jdbcType=VARCHAR},
+      c3 = #{record.c3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3" >
+    update test_lcn_3
+    <set >
+      <if test="a3 != null" >
+        a3 = #{a3,jdbcType=VARCHAR},
+      </if>
+      <if test="b3 != null" >
+        b3 = #{b3,jdbcType=VARCHAR},
+      </if>
+      <if test="c3 != null" >
+        c3 = #{c3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn.TestLcn3" >
+    update test_lcn_3
+    set a3 = #{a3,jdbcType=VARCHAR},
+      b3 = #{b3,jdbcType=VARCHAR},
+      c3 = #{c3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

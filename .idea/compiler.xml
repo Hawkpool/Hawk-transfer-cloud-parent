@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="transfer-cloud-test" />
+        <module name="transfer-hystrix-turbine-dashboard" />
+        <module name="transfer-cloud-backend" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="transfer-cloud-task-executor" target="1.8" />
+      <module name="transfer-cloud-test (1)" target="1.8" />
+      <module name="transfer-cloud-workflow" target="1.8" />
+      <module name="tuliu-form-tool" target="1.8" />
+      <module name="zipkin-server" target="1.8" />
+      <module name="zipkin-server-t" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="transfer-cloud-backend" options="-parameters" />
+      <module name="transfer-cloud-task-executor" options="-parameters" />
+      <module name="transfer-cloud-test" options="-parameters" />
+      <module name="transfer-cloud-test (1)" options="-parameters" />
+      <module name="transfer-cloud-workflow" options="-parameters" />
+      <module name="transfer-hystrix-turbine-dashboard" options="-parameters" />
+      <module name="tuliu-form-tool" options="-parameters" />
+      <module name="tuliu-transfer-cloud-parent" options="-parameters" />
+      <module name="zipkin-server" options="-parameters" />
+      <module name="zipkin-server-t" options="-parameters" />
+    </option>
+  </component>
+</project>

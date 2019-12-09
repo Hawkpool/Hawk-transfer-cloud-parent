@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<!-- jdbc路径 -->
+	<classPathEntry
+			location="F:\DEVELOP\apache-maven-3.6.1-tuliu\repo\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar" />
+
+	<context id="context" targetRuntime="MyBatis3">
+
+		<!-- 自动为entity生成swagger2文档-->
+		<plugin type="mybatis.generator.plugins.GeneratorSwagger2Doc">
+			<property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+			<property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
+
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<!--		<plugin type="mybatis.generator.plugins.ExtendEntitySetter"/>-->
+
+		<!-- 整合lombok-->
+		<plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
+			<property name="hasLombok" value="true"/>
+		</plugin>
+
+		<commentGenerator>
+			<property name="javaFileEncoding" value="UTF-8"/>
+			<!-- 抑制警告 -->
+			<property name="suppressTypeWarnings" value="true"/>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true"/>
+			<!-- 是否生成注释代时间戳-->
+			<property name="suppressDate" value="false"/>
+		</commentGenerator>
+
+		<!-- 请填写connectionURL、userId、password -->
+		<!--		<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+		<!--						connectionURL="jdbc:mysql://10.10.66.215:3306/anhua_resource_management" userId="root"-->
+		<!--						password="Tuliu.321!" />-->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://10.10.66.215:3306/test_jspxcms_release?useSSL=false" userId="root"
+						password="Tuliu.321!" />
+
+		<!-- 生成持久化对象 -->
+		<javaModelGenerator targetPackage="org.tuliu.land.transfer.tuliutransfercloudparent.domain.testLcn"
+							targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成mapper.xml文件 -->
+		<sqlMapGenerator targetPackage="mapper.biz"
+						 targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成Mapper接口 -->
+		<javaClientGenerator targetPackage="org.tuliu.land.transfer.tuliutransfercloudparent.mapper.biz"
+							 targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 需要生成的数据库表 -->
+		<table tableName="test_lcn_1" domainObjectName="TestLcn1" ></table>
+		<table tableName="test_lcn_2" domainObjectName="TestLcn2" ></table>
+		<table tableName="test_lcn_3" domainObjectName="TestLcn3" ></table>
+
+		<!--<table tableName="tb_base_doc" domainObjectName="BaseDoc" >
+			<generatedKey column="tid" sqlStatement=" select replace(uuid(),'-','')" />
+		</table>-->
+
+		<!--<table tableName="tb_biz_leave_order" domainObjectName="LeaveOrder" >
+			<generatedKey column="tid" sqlStatement=" select replace(uuid(),'-','')" />
+		</table>
+		<table tableName="tb_biz_leave_order_approve_record" domainObjectName="LeaveOrderApproveRecord" >
+			<generatedKey column="tid" sqlStatement=" select replace(uuid(),'-','')" />
+		</table>
+		<table tableName="tb_biz_leave_order_doc" domainObjectName="LeaveOrderDoc" >
+			<generatedKey column="tid" sqlStatement=" select replace(uuid(),'-','')" />
+		</table>
+		<table tableName="tb_biz_leave_order_workflow_item_todo" domainObjectName="LeaveOrderWorkflowItemTodo" >
+			<generatedKey column="tid" sqlStatement=" select replace(uuid(),'-','')" />
+		</table>-->
+
+
+	</context>
+</generatorConfiguration>
