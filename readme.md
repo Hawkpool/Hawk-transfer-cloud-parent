@@ -20,6 +20,10 @@
 
 整合TX-LCN处理分布式事务
 
+配置redis作为缓存框架
+
+使用xxl-job作为分布式任务框架
+
 ....
 
-启动项目需启动consul,zipkin,tx-lcn-TM 并在.properties文件中进行相关配置
+启动项目需启动consul,zipkin,tx-lcn-TM,xxl-job-admin(可选) 并在.properties文件中进行相关配置

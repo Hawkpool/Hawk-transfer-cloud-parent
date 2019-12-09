@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!--<property name="log.root.level" value="ERROR" />-->		<!-- 根路径的日志级别为 Error -->
+	<property name="log.base" value="/www/logs/test" />	<!-- 日志存储的路径 -->
+	<property name="log.max.size" value="10mb" />			<!-- 每个日志文件最多10mb，超过将会进行切割 -->
+	<property name="log.total.size" value="50mb" />		<!-- 日志最多保留50mb，超过会自动删除 -->
+	<property name="log.max.history" value="3" />			<!-- 日志最多保留3天，超过会自动删除 -->
+	<property name="log.app.name" value="TEST" />
+	<property name="log.model.name" value="test" />
+
+
+	<!--控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [${log.app.name}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出 -->
+	<appender name="ERROR.LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.base}/${log.model.name}-error.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.base}/${log.model.name}-error.%d{yyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${log.max.history}</maxHistory>
+			<totalSizeCap>${log.total.size}</totalSizeCap>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${log.max.size}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 日志输出格式 -->
+		<encoder>
+			<pattern>%d [${log.app.name}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 文件输出 -->
+	<appender name="BIZ.LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.base}/${log.model.name}-biz.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.base}/${log.model.name}-biz.%d{yyMMdd}.%i.log</fileNamePattern>
+			<maxHistory>${log.max.history}</maxHistory>
+			<totalSizeCap>${log.total.size}</totalSizeCap>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${log.max.size}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 日志输出格式 -->
+		<encoder>
+			<pattern>%d [${log.app.name}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="${logging.level.root}">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR.LOG" />
+		<appender-ref ref="BIZ.LOG" />
+	</root>
+
+	<!--日志输出设置 -->
+	<logger name="org.springframework" level="DEBUG"/>
+	<logger name="org.apache" level="DEBUG"/>
+	<logger name="com.alibaba" level="DEBUG"/>
+	<logger name="org.mybatis" level="DEBUG"/>
+	<logger name="org.apache.http" level="INFO"/>
+	<logger name="org.apache.tomcat" level="INFO"/>
+	<logger name="com.fpx" level="${logging.level.com.fpx}"/>
+
+</configuration>
